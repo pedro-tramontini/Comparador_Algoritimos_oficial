@@ -123,7 +123,7 @@ const ConverterVetor = async (lista, args) => {
 
 let resNumerosAleatorios = await fetch('numeros_aleatorios.txt')
 .then((data) => data.text())
-.then((x) => x.split('\n'))
+.then(async x => x.split('\n'))
 
 let resNumerosDecrescentes = await fetch('numeros_ordem_decrescente.txt')
 .then((data) => data.text())
@@ -146,7 +146,7 @@ listaDescrescente = ConverterVetor(resNumerosDecrescentes, listaDescrescente)
 listaOrdenada = ConverterVetor(resNumerosOrdenados, listaOrdenada)
 
 export const vetor = () => {
-    console.log("LISTA ALEATÓRIA", SelectionSort(listaAleatoria))
+    // console.log("LISTA ALEATÓRIA", SelectionSort(listaAleatoria))
     console.log("LISTA ALEATÓRIA",listaAleatoria)
 }
 
