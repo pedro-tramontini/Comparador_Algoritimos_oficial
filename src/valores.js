@@ -107,15 +107,6 @@ export const quickSort = (array) => {
     return quickSort(left).concat(pivot, quickSort(right))
 }
 
-const milNumeros = (quantidade) => {
-    let resNumerosAleatorios = fetch('numeros_aleatorios.txt')
-        .then((data) => data.text())
-        .then(async x => {
-            x.split('\n')
-        })
-
-}
-
 export const converterVetor = (lista, args) => {
     for (let i in lista) {
         let vetNumRandom = lista[i]

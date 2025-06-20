@@ -1,11 +1,65 @@
 import { Box, Button, FormControlLabel, MenuItem, Radio, RadioGroup, Select, Stack, Typography } from "@mui/material"
 import { useState } from "react"
-import { vetor } from "./consumoArquivos"
+import { converterVetor } from "./valores"
+import { selectionSort, shellSort, bubbleSort, quickSort, insertionSort } from "./valores"
 
 
 
 
 function App() {
+
+  const validacaoRequisicao = async (quantidadeNos, disposicaoDados) => {
+
+    let resNumerosAleatorios = await fetch(`${disposicaoDados}.txt`)
+    .then((data) => data.text())
+    .then(x => x.split('\n'))
+    .then(x => x.slice(0, `${parseInt(quantidadeNos)}`))
+    
+    let listaConvert = []
+    listaConvert = converterVetor(resNumerosAleatorios, listaConvert)
+
+    return [...listaConvert]
+  } 
+
+  const algOrden = (campo, array) => {
+    console.log(campo)
+    if (campo == "Selection Sort")
+      return (selectionSort(array))
+
+    if (campo == "Insertion Sort")
+      return (insertionSort(array))
+
+    if (campo == "Bubble Sort")
+      return (bubbleSort(array))
+
+    if (campo == "Shell Sort")
+      return (shellSort(array))
+
+    if (campo == "Quick Sort")
+      return (quickSort(array))
+  }
+
+  // //ESTADOS DOS VALORES DO FORMULARIO
+  // const [values, setValues] = useState({
+  //   algEscolhido1: "",
+  //   algEscolhido2: "",
+  //   quantidadeNos: "",
+  //   disposicaoDados: ""
+  // })
+
+  const handleChange = (async (event) => {
+    event.preventDefault()
+
+    const data = new FormData (event.currentTarget)
+
+    const arrayNumeros = await validacaoRequisicao(data.get('quantidade-nos'), data.get('algoritimo-ordenacao'))
+
+    console.log(algOrden(data.get('campo1'), arrayNumeros))
+    console.log(algOrden(data.get('campo2'), arrayNumeros))
+  })
+
+
+
 
   const algoritimos = [
     {
@@ -45,15 +99,14 @@ function App() {
     })
   }
 
+
   return (
     <Box sx={{background: '#F6F2FF', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-
-      <button onClick={vetor}>teste</button>
       
       <Box sx={{background: '#DCCCFF', width: '450px', height: '550px', maxHeight: '70%', maxWidth: '70%', borderRadius: '30px', boxShadow: 10}}>
         <Box sx={{margin: 3.5}}>
-          <form >
 
+          <form onSubmit={handleChange}>
           <Typography variant="h5" sx={{textAlign: 'center', marginBlock: 2}}>Algoritimos de ordenação</Typography>
 
           <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2}}>
@@ -69,7 +122,7 @@ function App() {
             </Select>
           </Box>
             <Typography variant="body1" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold', marginTop: 2}}>Quantidade de nós</Typography>
-            <RadioGroup row sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <RadioGroup row name="quantidade-nos" sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 <FormControlLabel value="1000" control={<Radio />} label="1000" />
                 <FormControlLabel value="10000" control={<Radio />} label="10000" />
                 <FormControlLabel value="100000" control={<Radio />} label="100000" />
@@ -77,10 +130,10 @@ function App() {
             </RadioGroup>
     
             <Typography variant="body1" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold', marginTop: 2}}>Disposição dos dados</Typography>
-            <RadioGroup sx={{display: 'flex', alignItems: 'start', justifyContent: 'center', marginLeft: 1}}>
-                <FormControlLabel value="ordenado-crescente" control={<Radio />} label="Ordenados - ordem crescente" />
-                <FormControlLabel value="ordenado-decrescente" control={<Radio />} label="Ordenados - ordem decrescente" />
-                <FormControlLabel value="ordenado-aleatória" control={<Radio />} label="Ordem Aleatória" />
+            <RadioGroup name="algoritimo-ordenacao" sx={{display: 'flex', alignItems: 'start', justifyContent: 'center', marginLeft: 1}}>
+                <FormControlLabel value="numeros_ordenados" control={<Radio/>} label="Ordenados - ordem crescente" />
+                <FormControlLabel value="numeros_ordem_decrescente" control={<Radio />} label="Ordenados - ordem decrescente" />
+                <FormControlLabel value="numeros_aleatorios" control={<Radio />} label="Ordem Aleatória" />
             </RadioGroup>
 
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
