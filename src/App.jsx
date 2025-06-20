@@ -1,6 +1,8 @@
 import { Box, Button, FormControlLabel, MenuItem, Radio, RadioGroup, Select, Stack, Typography } from "@mui/material"
 import { useState } from "react"
-import { vetor } from "./valores"
+import { vetor } from "./consumoArquivos"
+
+
 
 
 function App() {
@@ -45,7 +47,9 @@ function App() {
 
   return (
     <Box sx={{background: '#F6F2FF', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+
       <button onClick={vetor}>teste</button>
+      
       <Box sx={{background: '#DCCCFF', width: '450px', height: '550px', maxHeight: '70%', maxWidth: '70%', borderRadius: '30px', boxShadow: 10}}>
         <Box sx={{margin: 3.5}}>
           <form >

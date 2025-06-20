@@ -22,7 +22,7 @@ export const SelectionSort = (array) => {
 }
 
 //Algoritimo InsertionSort
-const InsertionSort = (array) => {
+export const InsertionSort = (array) => {
     if (array.length <= 1) {
         return array
     }
@@ -47,7 +47,7 @@ const InsertionSort = (array) => {
 }
 
 //Algoritimo BubbleSort
-const BubbleSort = (array) => {
+export const BubbleSort = (array) => {
     if (array.length <= 1) {
         return array
     }
@@ -104,11 +104,20 @@ export const QuickSort = (array) => {
     for (let i = 1; i < array.length; i++) {
         array[i] < pivot ? left.push(array[i]) : right.push(array[i])
     }
-    console.log('RETORNO DA FUNÇÃO')
 
     return QuickSort(left).concat(pivot, QuickSort(right))
 }
-const ConverterVetor = async (lista, args) => {
+
+const milNumeros = (quantidade) => {
+    let resNumerosAleatorios = fetch('numeros_aleatorios.txt')
+        .then((data) => data.text())
+        .then(async x => {
+            x.split('\n')
+        })
+
+}
+
+export const ConverterVetor = (lista, args) => {
     for (let i in lista) {
         let vetNumRandom = lista[i]
         let nums = vetNumRandom.split('\n')
@@ -119,38 +128,4 @@ const ConverterVetor = async (lista, args) => {
     }
     return [...args]
 };
-
-
-let resNumerosAleatorios = await fetch('numeros_aleatorios.txt')
-.then((data) => data.text())
-.then(async x => x.split('\n'))
-
-let resNumerosDecrescentes = await fetch('numeros_ordem_decrescente.txt')
-.then((data) => data.text())
-.then((x) => x.split('\n'))
-
-let resNumerosOrdenados = await fetch('numeros_ordenados.txt')
-.then((data) => data.text())
-.then((x) => x.split('\n'))
-
-
-let listaAleatoria = []
-let listaDescrescente = []
-let listaOrdenada = []
-
-// Converte o vetor de texto para um vetor de inteiros
-
-
-listaAleatoria = await ConverterVetor(resNumerosAleatorios, listaAleatoria)
-listaDescrescente = ConverterVetor(resNumerosDecrescentes, listaDescrescente)
-listaOrdenada = ConverterVetor(resNumerosOrdenados, listaOrdenada)
-
-export const vetor = () => {
-    // console.log("LISTA ALEATÓRIA", SelectionSort(listaAleatoria))
-    console.log("LISTA ALEATÓRIA",listaAleatoria)
-}
-
-
-
-
 
