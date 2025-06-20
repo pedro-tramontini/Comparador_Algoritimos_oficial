@@ -1,5 +1,5 @@
 //Algoritimo SelectionSort
-export const SelectionSort = (array) => {
+export const selectionSort = (array) => {
     if (array.length <= 1) {
         return array
     }
@@ -22,7 +22,7 @@ export const SelectionSort = (array) => {
 }
 
 //Algoritimo InsertionSort
-export const InsertionSort = (array) => {
+export const insertionSort = (array) => {
     if (array.length <= 1) {
         return array
     }
@@ -47,7 +47,7 @@ export const InsertionSort = (array) => {
 }
 
 //Algoritimo BubbleSort
-export const BubbleSort = (array) => {
+export const bubbleSort = (array) => {
     if (array.length <= 1) {
         return array
     }
@@ -70,28 +70,27 @@ export const BubbleSort = (array) => {
 }
 
 //Algoritimo ShellSort
-export const ShellSort = (array) => {
-    if (array.length <= 1) {
-        return array
+export const shellSort = (arr) => {
+  for (
+    let interval = Math.floor(arr.length / 2);
+    interval > 0;
+    interval = Math.floor(interval / 2)
+  ) {
+    for (let i = interval; i < arr.length; i++) {
+      let current = arr[i];
+      let j = i;
+      while (j >= interval && arr[j - interval] > current) {
+        arr[j] = arr[j - interval];
+        j -= interval;
+      }
+      arr[j] = current;
     }
-
-    let n = array.length;
-
-        for (let gap = Math.floor(n/2); gap > 0; gap = Math.floor(gap/2)) {
-            for (let i = gap; i < n; i++) {
-                let temp = array[i];
-                let j;
-                for (j = i; j >= gap && array[j-gap] > temp; j -= gap)
-                    array[j] = array[j-gap];
-    
-                array[j] = temp;
-            }
-
-            return(array)
-        }}
+  }
+  return arr;
+};
 
 //Algoritimo QuickSort
-export const QuickSort = (array) => {
+export const quickSort = (array) => {
     if (array.length <= 1) {
         return array
     }
@@ -105,7 +104,7 @@ export const QuickSort = (array) => {
         array[i] < pivot ? left.push(array[i]) : right.push(array[i])
     }
 
-    return QuickSort(left).concat(pivot, QuickSort(right))
+    return quickSort(left).concat(pivot, quickSort(right))
 }
 
 const milNumeros = (quantidade) => {
@@ -117,7 +116,7 @@ const milNumeros = (quantidade) => {
 
 }
 
-export const ConverterVetor = (lista, args) => {
+export const converterVetor = (lista, args) => {
     for (let i in lista) {
         let vetNumRandom = lista[i]
         let nums = vetNumRandom.split('\n')

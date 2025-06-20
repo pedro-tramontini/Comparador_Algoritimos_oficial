@@ -1,4 +1,4 @@
-import {  SelectionSort, ShellSort, BubbleSort, QuickSort, ConverterVetor } from "./valores"
+import {  selectionSort, shellSort, bubbleSort, quickSort, converterVetor } from "./valores"
 
 // let resNumerosAleatorios = await fetch('numeros_aleatorios.txt')
 // .then((data) => data.text())
@@ -12,10 +12,10 @@ let resNumerosDecrescentes = await fetch('numeros_ordem_decrescente.txt')
 .then(x => x.slice(0, 10))
 
 let listaDecConvert = []
-listaDecConvert = ConverterVetor(resNumerosDecrescentes, listaDecConvert)
+listaDecConvert = converterVetor(resNumerosDecrescentes, listaDecConvert)
 
 
-const valorDec = QuickSort(listaDecConvert) 
+const valorDec = shellSort(listaDecConvert) 
 // let listaNumerosDecrescentes = [] 
 // listaNumerosDecrescentes = ConverterVetor(listaNumerosDecrescentes, resNumerosAleatorios) 
 
@@ -28,6 +28,6 @@ const valorDec = QuickSort(listaDecConvert)
 
 export const vetor = () => {
     return(
-        console.log(valorDec)
+        console.log('CHAMANDO FUNÇÃO VETOR')
     )
 }
