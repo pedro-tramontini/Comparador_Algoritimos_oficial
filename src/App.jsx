@@ -47,6 +47,9 @@ function App() {
     tempoExecucao2: ""
   })
 
+  const [tempoExec1, setTempoExec1] = useState(10)
+  const [tempoExec2, setTempoExec2] = useState(10)
+
   const handleChange = (async (event) => {
     event.preventDefault()
 
@@ -57,21 +60,25 @@ function App() {
       algEscolhido2: data.get('campo2')
     })
 
+
     const arrayNumeros = await validacaoRequisicao(data.get('quantidade-nos'), data.get('algoritimo-ordenacao'))
 
     let inicio1 = performance.now()
     console.log(algOrden(data.get('campo1'), arrayNumeros))
     let fim1 = performance.now()
     let duracao1 = (fim1 - inicio1)
-    
+    setTempoExec1(duracao1)
+
     console.log("TEMPO DURACAO 2: " + duracao1)
     
     let inicio2 = performance.now()
     console.log(algOrden(data.get('campo2'), arrayNumeros))
     let fim2 = performance.now()
     let duracao2 = (fim2 - inicio2)
+    setTempoExec2(duracao2)
     console.log("TEMPO DURACAO 2: " + duracao2)
   })
+
 
 
 
@@ -157,9 +164,10 @@ function App() {
             <Box sx={{display: 'flex', justifyContent: 'center', maxHeight: '90%', marginBlock: 2}}>
               <Box sx={{width: '100%', height: '200px', background: '#a79ffa',  borderRadius: 4}}>
                 <Typography variant="body1" sx={{fontWeight: 'bold'}} margin={1}>--{values.algEscolhido1}--</Typography>
-                <Typography variant="body2" sx={{fontWeight: 'bold'}} margin={1}>TEMPO DE EXECUÇÃO: {}</Typography>
+                <Typography variant="body2" sx={{fontWeight: 'bold'}} margin={1}>TEMPO DE EXECUÇÃO: {tempoExec1}</Typography>
 
                 <Typography variant="body1" sx={{fontWeight: 'bold'}} margin={1}>--{values.algEscolhido2}--</Typography>
+                <Typography variant="body2" sx={{fontWeight: 'bold'}} margin={1}>TEMPO DE EXECUÇÃO: {tempoExec2}</Typography>
               </Box>
             </Box>
 
