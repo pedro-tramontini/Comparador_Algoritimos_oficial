@@ -7,6 +7,7 @@ export const selectionSort = (array) => {
     let i, j, temp, menor;
     let n = array.length;
     let quantRepet = 0;
+    let quantidadeMudancas = 0;
 
     for (i = 0; i < n - 1; i++) {
         menor = i;
@@ -14,6 +15,7 @@ export const selectionSort = (array) => {
         for (j = i + 1; j < n; j++) {
             if (array[j] < array[menor]) {
                 menor = j;
+                quantidadeMudancas++
             }
             quantRepet += 1;
         }
@@ -34,7 +36,7 @@ export const insertionSort = (array) => {
     let i, chave, j;
     let n = array.length;
     let quantRepet = 0;
-
+    let quantidadeMudancas = 0;
 
     for (i = 1; i < n; i++) {
         chave = array[i];
@@ -45,6 +47,7 @@ export const insertionSort = (array) => {
             array[j + 1] = array[j];
             j = j - 1;
             quantRepet += 1;
+            quantidadeMudancas++;
         }
 
         array[j + 1] = chave;
@@ -65,6 +68,7 @@ export const bubbleSort = (array) => {
     let i, j, temp;
     let n = array.length;
     let quantRepet = 0;
+    let quantidadeMudancas = 0;
 
     for (i = 0; i < n - 1; i++) {
         quantRepet += 1;
@@ -75,6 +79,7 @@ export const bubbleSort = (array) => {
                 temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
+                quantidadeMudancas++
             }
         }
     }
@@ -86,6 +91,7 @@ export const bubbleSort = (array) => {
 //Algoritimo ShellSort
 export const shellSort = (arr) => {
   let quantRepet = 0;
+let quantidadeMudancas = 0;
 
   for (
     let interval = Math.floor(arr.length / 2);
@@ -100,6 +106,7 @@ export const shellSort = (arr) => {
         quantRepet += 1;
         arr[j] = arr[j - interval];
         j -= interval;
+        quantidadeMudancas++
       }
       arr[j] = current;
     }
